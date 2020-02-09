@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="nav.css">
+		<title>Ultimate Scholarships Homepage</title>
+		<style type="text/css">
+			ul#select {
+				width: 50%;
+				list-style-type: none; /*remove list bits*/
+				margin: auto;
+				padding: 0;
+				overflow: hidden;
+				background-color: #00B0D0; /*ice blue*/
+			}
+			ul#select li a {
+				box-sizing:border-box;
+				font-family: Verdana, Geneva, sans-serif;
+				float:left; /*make it horizontal*/
+				display: block; /*make whole box clickable*/
+				color: white; /*text color*/
+				text-align: center;
+				font-size: 1.5em;
+				width: 50%;
+				padding: 10% 0;
+				text-decoration: none; /*no underlines, etc*/
+				border-right:2px solid white;
+			}
+			ul#select li:last-child a {
+				border: none;
+			}
+			@media (max-width: 1030px) {
+				ul#select {
+					width: 75%;
+				}
+			}
+			@media (max-width: 750px) {
+				ul#select li a {
+					float:none;
+					width:100%;
+					border-right:none;
+					border-bottom:2px solid white;
+				}
+			}
+			ul#select li a:hover {
+				background-color:#0090B0;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="logo.png" alt="Banner" id="banner">
+		<ul id="nav">
+			<li><a class="current" href="index.html" onclick="return false">Homepage</a></li>
+			<li><a href="services.html">Our Services</a></li>
+			<li><a href="contact.html">Contact Us</a></li>
+		</ul>
+		<h1 id="title">Ultimate Scholarships Homepage</h1>
+		<p></p>
+		<h3>Passionate about Ultimate and attending University? You've come to the right place.</h3>
+		<p>Ultimate Scholarships is a national nonprofit organization dedicated to providing college scholarships
+		for those pursing the great sport of Ultimate Frisbee. Founded in 2020 by our visionary CEO, Ultimate
+		Scholarships partners with colleges and USAU to provide oppportunities for students looking to pursue
+		their Ultimate passion in college. Disclaimer: This site is pure fiction.</p>
+		<ul id="select">
+			<li><a href="services.html">Explore Scholarships</a></li>
+			<li><a href="contact.html">Contact Us</a></li>
+		</ul>
+		<img src="layout.jpg" alt="Layout Pic" style='margin:0 auto; padding-top:20px; display:block; max-width:90%'>
+	</body>
+</html>
