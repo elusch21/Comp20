@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+<setlist>
+	<song>
+		<title>Mr. Brightside</title>
+		<artist>The Killers</artist>
+		<genre>Pop</genre>
+		<year>2004</year>
+	</song>
+	<song>
+		<title>Shooting Stars</title>
+		<artist>Bag Raiders</artist>
+		<genre>Pop</genre>
+		<year>2011</year>
+	</song>
+	<song>
+		<title>More Than You Know</title>
+		<artist>Axwell /\ Ingrosso</artist>
+		<genre>EDM</genre>
+		<year>2017</year>
+	</song>
+	<song>
+		<title>Autopilot</title>
+		<artist>Quinn XCII</artist>
+		<genre>Alternative</genre>
+		<year>2019</year>
+	</song>
+	<song>
+		<title>All I Want For Christmas Is You</title>
+		<artist>Mariah Carey</artist>
+		<genre>Holiday</genre>
+		<year>1994</year>
+	</song>
+	<song>
+		<title>Amazing</title>
+		<artist>Kanye West</artist>
+		<artist>Jeezy</artist>
+		<genre>Rap</genre>
+		<year>2008</year>
+	</song>
+	<song>
+		<title>Magic (feat. Rivers Cuomo)</title>
+		<artist>B.o.B.</artist>
+		<artist>Rivers Cuomo</artist>
+		<genre>Rap</genre>
+		<year>2010</year>
+	</song>
+	<song>
+		<title>Havana</title>
+		<artist>Camilla Cabello</artist>
+		<artist>Young Thug</artist>
+		<genre>Pop</genre>
+		<year>2017</year>
+	</song>
+	<song>
+		<title>Feel It Still</title>
+		<artist>Portugal. The Man</artist>
+		<genre>Pop</genre>
+		<year>2017</year>
+	</song>
+	<song>
+		<title>Stay Stay Stay</title>
+		<artist>Taylor Swift</artist>
+		<genre>Country</genre>
+		<year>2012</year>
+	</song>
+	<song>
+		<title>Better</title>
+		<artist>Khalid</artist>
+		<genre>Rap</genre>
+		<year>2018</year>
+	</song>
+</setlist>

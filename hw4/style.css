@@ -1,0 +1,22 @@
+artist, title, genre, year {
+	font-family: Verdana, Geneva, sans-serif;
+	display:block;
+	background-color: #F0F0F0;
+}
+title {
+	color: #000080;
+	font-size:25px;
+	padding:10px 10px 10px 10px;
+}
+artist {
+	color: blue;
+	padding:10px;
+}
+genre {
+	color: #4040FF;
+	padding: 10px;
+}
+year {
+	color: #6060FF;
+	padding:10px;
+}
