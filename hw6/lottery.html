@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fake Mass Lottery - Lucky For Life</title>
+	<script>
+		//global array var
+		var nums = [];
+		var ball;
+		function getRand(min, max) {
+			range = max - min;
+			return parseInt(Math.random() * range + min);
+		}
+		function submitNum() {
+			alert("submitted");
+		}
+		function intCompare(a, b) {
+  			return a - b;
+		}
+		function submitNum() {
+			var correctNums = 0;
+			var soln = document.getElementById("picks").value.split(' ');
+			for (var i = 0; i < 5; i++) {
+				soln[i] = parseInt(soln[i]);
+				for (var j = 0; j < 5; j++) {
+					if (soln[i] == nums[j]) {
+						correctNums++;
+					}
+				}
+			}
+			//cases
+			if (ball == parseInt(document.getElementById("ball").value)) {
+				if (correctNums == 0) {
+					document.getElementById("result").innerHTML = "$4";
+				} else if (correctNums == 1) {
+					document.getElementById("result").innerHTML = "$6";
+				} else if (correctNums == 2) {
+					document.getElementById("result").innerHTML = "$25";
+				} else if (correctNums == 3) {
+					document.getElementById("result").innerHTML = "$150";
+				} else if (correctNums == 4) {
+					document.getElementById("result").innerHTML = "$5000";
+				} else if (correctNums == 5) {
+					document.getElementById("result").innerHTML = "$7000 a WEEK for LIFE!";
+				}
+			} else {
+				if (correctNums == 2) {
+					document.getElementById("result").innerHTML = "$3"
+				} else if (correctNums == 3) {
+					document.getElementById("result").innerHTML = "$20";
+				} else if (correctNums == 4) {
+					document.getElementById("result").innerHTML = "$200";
+				} else if (correctNums == 5) {
+					document.getElementById("result").innerHTML = "$25000 a YEAR for LIFE!";
+				} else {
+					document.getElementById("result").innerHTML = "$0";
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Fake Mass Lottery - Lucky For Life</h1>
+	<p>Unsorted numbers</p>
+	<p id="unsortedpick"></p>
+	<p>Sorted numbers</p>
+	<p id="sortedpick"></p>
+	<p>Lucky Ball</p>
+	<p id="balldisplay"></p>
+	<form>
+		<label for="picks">Your Numbers:</label><br>
+		<input type="text" id="picks" name="picks" value="0 0 0 0 0"><br>
+		<label for="ball">Lucky Ball:</label><br>
+		<input type="text" id="ball" name="ball" value="0">
+		<input type="button" value="Submit" onclick="submitNum()">
+	</form>
+	<p id="result"></p>
+	<script>
+		//pick ball
+		ball = getRand(1, 18);
+		document.getElementById("balldisplay").innerHTML = ball;
+		//pick nums
+		var str = "";
+		for (var i = 0; i < 5; i++) {
+			nums[i] = getRand(1,48);
+			str += nums[i] + " ";
+		}
+		document.getElementById("unsortedpick").innerHTML = str;
+		//sort nums
+		nums.sort(intCompare);
+		str = "";
+		for (var i = 0; i < 5; i++) {
+			str += nums[i] + " ";
+		}
+		document.getElementById("sortedpick").innerHTML = str;
+	</script>
+</body>
+</html>

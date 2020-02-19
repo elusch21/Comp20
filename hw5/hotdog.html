@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Joe's Hotdogs</title>
+</head>
+<body>
+	<h1>Joe's Hotdogs very sophisticated Online Ordering System</h1>
+	<p id="hotdogs"></p>
+	<p id="fries"></p>
+	<p id="drinks"></p>
+	<p id="subtotals"></p>
+	<p id="special"></p>
+	<p id="tax"></p>
+	<p id="total"></p>
+
+	<script type="text/javascript">
+		var dogs = parseInt(prompt("Welcome to Joe's Hotdogs! Please enter the number of hotdogs you want: $3.25 each.", "1"));
+		var fry = parseInt(prompt("Please enter the number of orders of fries you want: $2.00 each.", "1"));
+		var drink = parseInt(prompt("Please enter the number of drinks you want: $1.50 each.", "1"));
+		//toFixed used to view in standard $x.yz language
+		if (dogs > 0) {
+			document.getElementById("hotdogs").innerHTML = "Hotdogs: " + dogs + " @3.25 = $" + (dogs * 3.25).toFixed(2);
+		}
+		if (fry > 0) {
+			document.getElementById("fries").innerHTML = "Fries: " + fry + " @2.00 = $" + (fry * 2.00).toFixed(2);
+		}
+		if (drink > 0) {
+			document.getElementById("drinks").innerHTML = "Drinks: " + drink + " @1.50 = $" + (drink * 1.50).toFixed(2);
+		}
+		var subtotal = drink*1.5 + fry*2.0 + dogs*3.25;
+		document.getElementById("subtotals").innerHTML = "Subtotal: $" + subtotal.toFixed(2);
+		if (subtotal >= 20) {
+			subtotal = subtotal - (subtotal*.1).toFixed(2);
+			document.getElementById("special").innerHTML = "Joe's Special: -10% to subtotal! Order now $" + subtotal;
+		}
+		var tax = subtotal *.0625;
+		document.getElementById("tax").innerHTML = "Massachusetts State Tax: $" + tax.toFixed(2);
+		var total = subtotal + tax;
+		document.getElementById("total").innerHTML = "Total: $" + total.toFixed(2);
+	</script>
+</body>
+</html>
