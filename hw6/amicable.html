@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amicable Number Calculator</title>
+	<script>
+		function amicable() {
+			var num1 = parseInt(document.getElementById("num1").value);
+			var num2 = parseInt(document.getElementById("num2").value);
+			if (sumFactor(num1) == num2 && sumFactor(num2) == num1) {
+				document.getElementById("result").innerHTML = num1 + " and " + num2 + " are amicable!"
+			} else {
+				document.getElementById("result").innerHTML = num1 + " and " + num2 + " aren't amicable."
+			}
+		}
+		function sumFactor(num) {
+			var factors = factor(num);
+			var sum = 0;
+			for (var i = 0; i < factors.length; i++) {
+				sum += factors[i];
+			}
+			return sum;
+		}
+		function factor(num) {
+			var factors = [1];
+			for (var i = 2; i < num/2 + 1; i++) {
+				if (num % i == 0) {
+					factors[factors.length] = i;
+				}
+			}
+			return factors;
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<label for="num1">Number 1:</label><br>
+		<input type="text" id="num1" name="num1" value="1"><br>
+		<label for="num2">Number 2:</label><br>
+		<input type="text" id="num2" name="num2" value="1">
+		<input type="button" value="Submit" onclick="amicable()">
+	</form>
+	<p id="result"></p>
+</body>
+</html>

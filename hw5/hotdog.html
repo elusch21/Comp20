@@ -31,7 +31,7 @@
 		document.getElementById("subtotals").innerHTML = "Subtotal: $" + subtotal.toFixed(2);
 		if (subtotal >= 20) {
 			subtotal = subtotal - (subtotal*.1).toFixed(2);
-			document.getElementById("special").innerHTML = "Joe's Special: -10% to subtotal! Order now $" + subtotal;
+			document.getElementById("special").innerHTML = "Joe's Special: -10% to subtotal! Order now $" + subtotal.toFixed(2);
 		}
 		var tax = subtotal *.0625;
 		document.getElementById("tax").innerHTML = "Massachusetts State Tax: $" + tax.toFixed(2);
