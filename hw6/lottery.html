@@ -81,7 +81,12 @@
 		//pick nums
 		var str = "";
 		for (var i = 0; i < 5; i++) {
-			nums[i] = getRand(1,48);
+			var num = getRand(1,48);
+			// prevent duplication:
+			while (nums.includes(num) == true) {
+				num = getRand(1,48);
+			}
+			nums[i] = num;
 			str += nums[i] + " ";
 		}
 		document.getElementById("unsortedpick").innerHTML = str;
