@@ -1,0 +1,30 @@
+html {
+	background-color: #87ceeb;
+}
+h1 {
+	font-family: Verdana, Geneva, sans-serif;
+}
+p {
+	max-width: 300px;
+	font-family: Verdana, Geneva, sans-serif;
+	display:block;
+}
+
+p input[name="lname"],input[name="fname"],input[name="street"],input[name="city"],input[name="phone"]{
+	float:right;
+}
+p input#subtotal,input#tax,input#total {
+	width: 100px;
+	background-color: #a7eefb;
+}
+
+td,th {
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+input{
+	font-family: Verdana, Geneva, sans-serif;
+}
+td input {
+	background-color: #a7eefb;
+}

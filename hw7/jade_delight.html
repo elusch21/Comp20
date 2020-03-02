@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css">
+<title>Jade Delight</title>
+</head>
+
+<body>
+<script language="javascript">
+
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 4.5),
+	new MenuItem("Sweet and Sour Pork", 6.25),
+	new MenuItem("Shrimp Lo Mein", 5.25),
+	new MenuItem("Moo Shi Chicken", 6.5),
+	new MenuItem("Fried Rice", 2.35)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+
+// NEW CODE
+/* form submission */
+function submitForm() {
+	let errorString = "There are one or more issues with your order, please fix the following:";
+	let flag = true; //true if order is correctly formatted
+	//validate last name
+	if (document.getElementsByName('lname')[0].value == "") {
+		errorString += "\n- Last Name cannot be blank";
+		flag = false;
+	}
+	//validate phone number
+	let phone = document.getElementsByName('phone')[0].value;
+	if (phone.length != 12) {
+		errorString += "\n- Phone Number must be in the format xxx-xxx-xxxx";
+		flag = false;
+	} else {
+		for (i = 0; i < phone.length; i++) {
+			if (i == 3 || i == 7) {
+				if (phone.charCodeAt(i) != 45) {
+					errorString += "\n- Phone Number must be in the format xxx-xxx-xxxx";
+					flag = false;
+					break;
+				}
+			} else {
+				if (phone.charCodeAt(i) < 48 || phone.charCodeAt(i) > 57) {
+					errorString += "\n- Phone Number must be in the format xxx-xxx-xxxx";
+					flag = false;
+					break;
+				}
+			}
+		}
+	}
+	//pickup vs delivery
+	let d = new Date();
+	if (document.getElementsByName("p_or_d")[0].checked) { //pickup true
+		//calculate 15 min from current time
+		d.setMinutes(d.getMinutes()+15);
+		d = d.toLocaleTimeString();
+	} else { //go go delivery go
+		//street and city required
+		if (document.getElementsByName("street")[0].value == "") {
+			errorString += "\n- Street cannot be blank for a delivery order";
+			flag = false;
+		}
+		if (document.getElementsByName("city")[0].value == "") {
+			errorString += "\n- City cannot be blank for a delivery order";
+			flag = false;
+		}
+		//calculate 30 min from current time
+		d.setMinutes(d.getMinutes()+30);
+		d = d.toLocaleTimeString();
+	}
+
+	//report errors, if any
+	if (!flag) {
+		alert(errorString);
+		return false;
+	} else {
+		alert("Thank you for your order! It will be ready around " + d + ". Your total today is $" + document.getElementById("total").value + ".");
+	}
+}
+
+</script>
+
+<h1>Jade Delight</h1>
+<form id="store" onsubmit = "return submitForm()">
+
+<p>First Name: <input type="text"  name='fname' /></p>
+<p>Last Name*:  <input type="text"  name='lname' /></p>
+<p>Street: <input type="text"  name='street' /></p>
+<p>City: <input type="text"  name='city' /></p>
+<p>Phone*: <input type="text"  name='phone' /></p>
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery'/>
+	Delivery
+</p>
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script language="javascript">
+
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr><td>";
+	  s += makeSelect("quan" + i, 0, 10);
+	  s += "</td><td>" + menuItems[i].name + "</td>";
+	  s += "<td> $ " + menuItems[i].cost.toFixed(2) + "</td>";
+	  s += "<td>$<input type='text' name='cost'/></td></tr>";
+  }
+  document.writeln(s);
+
+
+// NEW CODE HERE
+/* update cost function */
+function updateCost(item) {
+	let costs = document.getElementsByName('cost');
+	let index = item.name[4]; //gets last digit - eg. quan0 becomes 0
+	costs[index].value = (item.value * menuItems[index].cost).toFixed(2);
+	
+	//update subtotal, tax, and total
+	let sum = 0;
+	for (i = 0; i < costs.length; i++) {
+		let val = parseFloat(costs[i].value);
+		if (!isNaN(val)) {
+			sum += parseFloat(costs[i].value);
+		}
+	}
+	document.getElementById("subtotal").value = sum.toFixed(2);
+	document.getElementById("tax").value = (sum*0.0625).toFixed(2);
+	document.getElementById("total").value = (sum + (sum*0.0625)).toFixed(2);
+}
+
+/* event listeners for select changes */
+for (i = 0; i < menuItems.length; i++) {
+	let quan = document.getElementsByName("quan"+i);
+	quan.forEach((item) => {
+		item.onchange = function(){updateCost(item)};
+	});
+}
+
+</script>
+</table>
+<p>Subtotal: 
+   $<input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p>Mass tax 6.25%:
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p>Total: $ <input type="text"  name='total' id="total" />
+</p>
+
+<input type = "submit" value = "Submit Order" />
+
+</form>
+</body>
+</html>
