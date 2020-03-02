@@ -16,6 +16,7 @@ p input[name="lname"],input[name="fname"],input[name="street"],input[name="city"
 p input#subtotal,input#tax,input#total {
 	width: 100px;
 	background-color: #a7eefb;
+	float:right;
 }
 
 td,th {
