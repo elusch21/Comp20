@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSON and JS practice</title>
+	<script type="text/javascript">
+		const setList = [
+			{
+				"title":"Mr. Brightside",
+				"artists":["The Killers"],
+				"genres":["Pop","Meme"],
+				"year":2004
+			},
+			{
+				"title":"Shooting Stars",
+				"artists":["Bag Raiders"],
+				"genres":["Pop","Meme"],
+				"year":2011
+			},
+			{
+				"title":"More Than You Know",
+				"artists":["Axwell /\\ Ingrosso"],
+				"genres":["EDM","Pop"],
+				"year":2017
+			},
+			{
+				"title":"Autopilot",
+				"artists":["Quinn XCII"],
+				"genres":["Alternative"],
+				"year":2019
+			},
+			{
+				"title":"All I Want For Christmas Is You",
+				"artists":["Mariah Carey"],
+				"genres":["Holiday","Meme"],
+				"year":1994
+			},
+			{
+				"title":"Amazing",
+				"artists":["Kanye West", "Jeezy"],
+				"genres":["Rap","Pop"],
+				"year":2008
+			},
+			{
+				"title":"Magic (feat. Rivers Cuomo)",
+				"artists":["B.o.B.", "Rivers Cuomo"],
+				"genres":["Rap"],
+				"year":2010
+			},
+			{
+				"title":"Havana",
+				"artists":["Camilla Cabello", "Young Thug"],
+				"genres":["Pop"],
+				"year":2017
+			},
+			{
+				"title":"Feel It Still",
+				"artists":["Portugal. The Man"],
+				"genres":["Pop","Alternative"],
+				"year":2017
+			},
+			{
+				"title":"Stay Stay Stay",
+				"artists":["Taylor Swift"],
+				"genres":["Country","Pop"],
+				"year":2012
+			},
+			{
+				"title":"Better",
+				"artists":["Khalid"],
+				"genres":["Rap"],
+				"year":2018
+			}
+
+		];
+
+		//returns true if query in array, false otherwise
+		function findArray(array, query) {
+			for (var i = 0; i < array.length; i++) {
+				if (query === array[i]) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		//called on submission of form at bottom of page
+		function submitForm(ev) {
+			//prevent data from being wiped
+			ev.preventDefault();
+			let text = "";
+			for (var i in setList) {
+				if (findArray(setList[i].genres, document.getElementById("filter").value)) {
+					text += "<p>"+setList[i].title+"</p>";
+				}
+			}
+			document.getElementById("part4").innerHTML = text;
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<h3>Part 2: Serialize and Display</h3>
+	<p id="part2"></p>
+	<h3>Part 3: User Friendly Display</h3>
+	<!--good display here-->
+
+	<script type="text/javascript">
+		//Part 2:
+		document.getElementById("part2").innerHTML = JSON.stringify(setList);
+		//Part 3:
+		for (var i = 0; i < setList.length; i++) {
+			//title
+			let entry = document.createElement('p');
+			entry.id="song"+i;
+			entry.innerHTML = "<strong>"+setList[i].title+"</strong><br>";
+			//artists
+			let len = setList[i].artists.length;
+			if (len == 1) {
+				entry.innerHTML += "Artist: ";
+			} else {
+				entry.innerHTML += "Artists: ";
+			}
+			for (var j = 0; j < len; j++) {
+				if (j > 0) {
+					entry.innerHTML += ", ";
+				}
+				entry.innerHTML += setList[i].artists[j];
+			}
+			entry.innerHTML += "<br>";
+			//genres
+			len = setList[i].genres.length;
+			if (len == 1) {
+				entry.innerHTML += "Genre: ";
+			} else {
+				entry.innerHTML += "Genres: ";
+			}
+			for (var j = 0; j < len; j++) {
+				if (j > 0) {
+					entry.innerHTML += ", ";
+				}
+				entry.innerHTML += setList[i].genres[j];
+			}
+			//date
+			entry.innerHTML += "<br>Released in " + setList[i].year;
+			document.body.append(entry);
+		}
+	</script>
+
+	<h3>Part 4: Filter</h3>
+	<script type="text/javascript">
+		//build form
+		let form = document.createElement("form");
+		form.id = "filterform"
+		form.addEventListener("submit", submitForm);
+		//selector setup
+		var innerHTMLstr =  "<select id='filter'>";
+		//build genres list
+		let list = [];
+		for (var i = 0; i < setList.length; i++) {
+			for (var j = 0; j < setList[i].genres.length; j++) {
+				if (!findArray(list, setList[i].genres[j])) {
+					// not in list
+					list[list.length] = setList[i].genres[j];
+				}
+			}
+		}
+		//set up genre select options
+		for (var i = 0; i < list.length; i++) {
+			innerHTMLstr +="<option value='" + list[i] +"'>" + list[i] + "</option>";
+		}
+		innerHTMLstr += "</select>";
+		form.innerHTML = innerHTMLstr;
+		//submit button setup
+		form.innerHTML += '<input type = "submit" value = "Filter"/>';
+		//put form on page
+		document.body.append(form);
+	</script>
+	<div id="part4"></div>
+	<div id="spacing"><p>&nbsp</p><p>&nbsp</p><p>&nbsp</p></div>
+</body>
+</html>
