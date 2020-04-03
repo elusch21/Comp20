@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API of APIs Query Tool</title>
+	<script type="text/javascript">
+		function makeCall() {
+			//make request object
+			request = new XMLHttpRequest();
+
+			//set url for request
+			request.open("GET", "https://api.publicapis.org/random?auth=null&https=true", true);
+
+			//set up event handler
+			request.onreadystatechange = function() {
+				if (request.readyState == 4 && request.status == 200) {
+					//successful request, use data
+					//alert(request.responseText);
+					result = request.responseText;
+					document.getElementById("rawdata").innerHTML = "Raw JSON: " + result;
+					obj = JSON.parse(result);
+					str = "<b>API Name:</b> " + obj.entries[0].API + "<br><b>Description:</b> " + obj.entries[0].Description;
+					str += "<br><b>Link:</b> <a href='" + obj.entries[0].Link + "' target='_blank'>Click Here</a>";
+					document.getElementById("data").innerHTML = str;
+
+				} else if (request.readyState == 4) {
+					//failed request, handle it
+				} else {
+					//incomplete request, handle it
+					document.getElementById("data").innerHTML = "Request Processing...";
+				}
+			}
+
+			//send request
+			request.send();
+		}
+	</script>
+</head>
+<body>
+	<h1>Random Public API Generator!</h1>
+	<p>Hit the button to get a random public API.</p>
+	<button onclick="makeCall()">Click Me!</button>
+	<p id="rawdata"></p>
+	<p id="data"></p>
+	<p>Disclaimer: I can't guarantee the security or maintenence of any linked APIs.</p>
+	<p><b>Assignment Notes:</b></p>
+	<p>Q: What is this API?<br>This API grants access to a list of public APIs from various categories.</p>
+	<p>Q: Where is it located?<br><a href="https://github.com/davemachado/public-api" target="_blank">Here!</a></p>
+	<p>Q: What request options were used?<br>I use the random request type to get a random entry, auth=null to select APIs with no authentication necessary, and https=true to ensure https is supported.</p>
+	<p>Q: What are two ways this API is useful?<br>1. Helping other students with this homework!<br>2. Project ideas/example APIs for the future.</p>
+</body>
+</html>
